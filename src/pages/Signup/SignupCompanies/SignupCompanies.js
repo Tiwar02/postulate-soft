@@ -64,20 +64,20 @@ export default function SignupCompanies() {
           <Col sm="6">
             <Label for="type_select">Sector</Label>
             <Input id="type_select" name="type_select" type="select">
-              <option>Seleccione un sector</option>
-              <option>Sector 1</option>
-              <option>Sector 2</option>
-              <option>Sector 3</option>
+              <option key={0}>Seleccione un sector</option>
+              <option key={1}>Sector 1</option>
+              <option key={2}>Sector 2</option>
+              <option key={3}>Sector 3</option>
             </Input>
           </Col>
           <Col sm="6">
             <Label for="size_select">Numero de empleados</Label>
             <Input id="size_select" name="size_select" type="select">
               <option>Seleccione un rango</option>
-              <option>1 a 10</option>
-              <option>11 a 50</option>
-              <option>51 a 250</option>
-              <option>Más de 250</option>
+              <option key={0}>1 a 10</option>
+              <option key={1}>11 a 50</option>
+              <option key={2}>51 a 250</option>
+              <option key={3}>Más de 250</option>
             </Input>
           </Col>
         </FormGroup>

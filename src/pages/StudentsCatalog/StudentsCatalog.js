@@ -10,13 +10,13 @@ const columns = [
     valueGetter: params =>
       {
         switch(params.row.doctype) {
-          case 0:
-            return "CC"
           case 1:
             return "TI"
           case 2:
+            return "CC"
+          case 3:
             return "CE"
-          case 3: 
+          case 4: 
             return "PAS"
         }
       }
