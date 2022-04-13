@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 import "./StudentsCatalog.css";
+import studentsjson from "../../students.json";
 
 const columns = [
   {
@@ -100,7 +101,7 @@ export default function StudentCatalog() {
     <div className='container mt-4' style={{ height: 700, width: '100%' }}>
       <DataGrid
         components={{ Toolbar: GridToolbar }}
-        rows={students} //students son los datos de Mockapi, r son datos de prueba locales
+        rows={studentsjson} //students son los datos de Mockapi, r son datos de prueba locales
         columns={columns}
         pageSize={pageSize}
         onPageSizeChange={newPageSize => setPageSize(newPageSize)}

@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./Login.css";
-import {Link} from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { UserContext } from "../../App";
 
 //Reactstrap
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
 
 const Login = () => {
+  const { user, setUser } = useContext(UserContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [textAlert, setTextAlert] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [hasError, setHasError] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   function onChange(e) {
     e.target.name === "username"
@@ -18,45 +25,28 @@ const Login = () => {
       : setPassword(e.target.value);
   }
 
-  function validateAccount(account) {
-    /* let response = await this.$axios.get("http://localhost:3001/workers");
-
-    for (var i = 0; i < response.data.length && !found; i++) {
-      if (response.data[i].cc == this.user.cc) {
-        if (response.data[i].password == this.user.password) {
-          if (response.data[i].active == true) found = !found;
-          this.user.rol = response.data[i].rol;
-        }
-      }
-    } */
-    const { username, password } = account;
+  function onSubmit(e) {
     if (username === "" || password === "") {
-      setHasError(true);
       setTextAlert("Llene todos los campos");
+      setHasError(true);
     } else {
       if (username === "1001" && password === "2002") {
-        let ac = { username, password };
-        let account = JSON.stringify(ac);
-        localStorage.setItem("account", account);
-        setIsLoggedIn(true);
-        alert("Se ha logueado correctamente!")
+        setUser({ loggedIn: true });
+        if (location.state?.from) {
+          navigate(location.state.from);
+        }
+        alert("Logueo Exitosoo")
       } else {
-        setIsLoggedIn(false);
+        setUser({ loggedIn: true });
         setTextAlert("Su usuario o contraseña son incorrectos");
         setHasError(true);
       }
     }
   }
 
-  function onSubmit(e) {
-    let account = { username, password };
-    validateAccount(account);
-    /* this.props.addTask(usern, this.state.description);
-    e.preventDefault(); */
-  }
-
   return (
     <div>
+      {/* <p>{`Logged: ${user.loggedIn}`}</p> */}
       <Form className="login-form">
         <h1 className="text-center">Bienvenido/a</h1>
         <Alert
@@ -89,15 +79,15 @@ const Login = () => {
           />
         </FormGroup>
 
-        <Button style={{background: "#C20C19"}} block size="lg" onClick={onSubmit}>
+        <Button style={{ background: "#C20C19" }} block size="lg" onClick={onSubmit}>
           Login
         </Button>
       </Form>
       <div className="text-center pt-3">
-          <Link className="link-style" to="/signup-companies" >¿Nueva empresa o contacto? Regístrate</Link>
-          <span className="p-2">|</span>
-          <Link className="link-style" to="/forgot-password">Olvidé la contraseña</Link>
-        </div>
+        <Link className="link-style" to="/signup-companies" >¿Nueva empresa o contacto? Regístrate</Link>
+        <span className="p-2">|</span>
+        <Link className="link-style" to="/forgot-password">Olvidé la contraseña</Link>
+      </div>
     </div>
   );
 };
