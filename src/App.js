@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import Navbar from "./components/Navbar/Navbar"
+import Navbar from "./components/Navbar/Navbar";
 import Views from "./Views";
 
 export const UserContext = createContext();

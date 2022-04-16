@@ -4,10 +4,11 @@ import { Container } from "reactstrap";
 
 export default function Home() {
   return (
-    <Container>
-      <h1>Home Navbar...</h1>
-      <hr/>
-      <p>Helloooooo World!</p>
-    </Container>
+    <div>
+      <Container>
+        <h1>Home Navbar...</h1>
+        <p>Helloooooo World!</p>
+      </Container>
+    </div>
   );
 }

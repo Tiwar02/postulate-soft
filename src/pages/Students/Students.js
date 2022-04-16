@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-import "./StudentsCatalog.css";
+import "./Students.css";
 import studentsjson from "../../students.json";
 
 const columns = [

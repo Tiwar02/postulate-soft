@@ -32,9 +32,7 @@ const Login = () => {
     } else {
       if (username === "1001" && password === "2002") {
         setUser({ loggedIn: true });
-        if (location.state?.from) {
-          navigate(location.state.from);
-        }
+        navigate(from, { replace: true });
         alert("Logueo Exitosoo")
       } else {
         setUser({ loggedIn: true });

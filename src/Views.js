@@ -2,7 +2,10 @@ import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import SignupCompanies from "./pages/Signup/SignupCompanies/SignupCompanies";
 import SignupContacts from "./pages/Signup/SignupContacts/SignupContacts";
-import StudentCatalog from "./pages/StudentsCatalog/StudentsCatalog";
+import Students from "./pages/Students/Students";
+import Companies from "./pages/Companies/Companies";
+import Contacts from "./pages/Contacts/Contacts";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import { Routes, Route } from "react-router-dom";
@@ -21,11 +24,15 @@ export default function Views() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup-companies" element={<SignupCompanies />} />
         <Route path="/signup-contacts" element={<SignupContacts />} />
+        <Route path="*" element={<NotFoundPage />} />
 
         {/* Private Routes */}
         <Route element={<RequireAuth />}>
           <Route path="/" element={<Home />} />
-          <Route path="/students-catalog" element={<StudentCatalog />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/companies" element={<Companies />} />
+          <Route path="/contacts" element={<Contacts />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Route>
     </Routes>
