@@ -35,7 +35,6 @@ const Login = () => {
         navigate(from, { replace: true });
         alert("Logueo Exitosoo")
       } else {
-        setUser({ loggedIn: true });
         setTextAlert("Su usuario o contraseña son incorrectos");
         setHasError(true);
       }

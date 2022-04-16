@@ -104,7 +104,7 @@ export default class SignupContacts extends Component {
 
           <FormGroup row>
             <Col sm="6" >
-              <Label for="company_name">* Razón social</Label>
+              <Label for="company_name">* Empresa</Label>
               <Input id="company_name" name="company_name" type="select">
                 <option key={0}>Seleccione la empresa a la que pertenece</option>
                 {this.state.companies.map(company =>

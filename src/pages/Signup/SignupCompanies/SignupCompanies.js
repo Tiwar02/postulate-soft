@@ -38,7 +38,7 @@ export default function SignupCompanies() {
             />
           </Col>
           <Col>
-            <Label for="company_name">* Razón Social</Label>
+            <Label for="company_name">* Empresa</Label>
             <Input
               id="company_name"
               name="company_name"

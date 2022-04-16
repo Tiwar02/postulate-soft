@@ -8,7 +8,7 @@ import udemLogo from "../../assets/images/udem_logo.png";
 import { UserContext } from "../../App";
 import { Progress } from 'reactstrap';
 
-export default function Navbar2() {
+export default function Navbar() {
   const { user } = useContext(UserContext);
 
   const [sidebar, setSidebar] = useState(false);
@@ -34,8 +34,10 @@ export default function Navbar2() {
         <ul className='sidebar-items'>
           <li className='navbar-toggle'>
             <Link to="#" className='menu-bars'>
-              <AiIcons.AiOutlineClose onClick={showSidebar} style={{ color: "#000" }} />
+              {/* <AiIcons.AiOutlineClose onClick={showSidebar} style={{ color: "#000" }} /> */}
+              {user.name ? console.log(user.name) : console.log("no hay  nada")}
             </Link>
+            <p className='name'>John Doe</p>
           </li>
           {MenuItems.map((item, index) => {
             return (

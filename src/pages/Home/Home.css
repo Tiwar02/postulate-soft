@@ -1,0 +1,10 @@
+.content {
+    width: 500;
+    height: 500;
+    display: block;
+    margin-top: 240px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: .5;
+}
