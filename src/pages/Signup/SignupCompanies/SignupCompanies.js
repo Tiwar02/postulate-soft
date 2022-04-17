@@ -162,7 +162,6 @@ export default function SignupCompanies() {
             <Button
               style={{ background: "#C20C19" }}
               block
-              size="lg"
               onClick={() => alert("Se ha registrado correctamente")}
             >
               Registrar

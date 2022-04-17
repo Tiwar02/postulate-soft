@@ -22,11 +22,5 @@ export const MenuItems = [
         path: "/contacts",
         icon: "fas fa-address-card",
         cName: "nav-text", 
-    },
-    {
-        title: "Salir",
-        path: "/",
-        icon: "fas fa-arrow-right-from-bracket",
-        cName: "nav-text", 
     }
 ]

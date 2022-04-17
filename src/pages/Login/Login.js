@@ -2,7 +2,7 @@ import React, { useContext, useRef, useState } from "react";
 import "./Login.css";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { UserContext } from "../../App";
+import { UserContext } from "../../UserContext";
 
 //Reactstrap
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
@@ -31,7 +31,7 @@ const Login = () => {
       setHasError(true);
     } else {
       if (username === "1001" && password === "2002") {
-        setUser({ loggedIn: true });
+        setUser({ loggedIn: true, name: user.name });
         navigate(from, { replace: true });
         alert("Logueo Exitosoo")
       } else {
@@ -76,7 +76,7 @@ const Login = () => {
           />
         </FormGroup>
 
-        <Button style={{ background: "#C20C19" }} block size="lg" onClick={onSubmit}>
+        <Button style={{ background: "#C20C19" }} block onClick={onSubmit}>
           Login
         </Button>
       </Form>

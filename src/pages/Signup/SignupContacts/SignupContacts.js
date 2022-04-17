@@ -164,7 +164,6 @@ export default class SignupContacts extends Component {
               <Button
                 style={{ background: "#C20C19" }}
                 block
-                size="lg"
                 onClick={() => alert("Se ha registrado correctamente")}
               >
                 Registrar

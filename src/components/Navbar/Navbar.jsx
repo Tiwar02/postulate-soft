@@ -5,16 +5,21 @@ import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import "./Navbar.css";
 import udemLogo from "../../assets/images/udem_logo.png";
-import { UserContext } from "../../App";
+import { UserContext } from "../../UserContext";
 import { Progress } from 'reactstrap';
 
 export default function Navbar() {
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   const [sidebar, setSidebar] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const [showProgress, setShowProgress] = useState(false);
+  const [progressValue, setProgressValue] = useState();
   const showSidebar = () => setSidebar(!sidebar);
-  const showProgress = () => setIsLoading(!isLoading);
+  const changeShowProgress = () => setShowProgress(!showProgress);
+
+  const logout = () => {
+    setUser({ loggedIn: false, name: user.name })
+  }
 
   return (
     <>
@@ -29,15 +34,14 @@ export default function Navbar() {
           </Link>}
         </div>
       </div>
-      <Progress animated color="info" value={70} hidden={!isLoading} />
+      <Progress animated color="info" value={progressValue} hidden={!showProgress} />
       <nav className={sidebar ? "sidebar active" : "sidebar"}>
-        <ul className='sidebar-items'>
-          <li className='navbar-toggle'>
-            <Link to="#" className='menu-bars'>
-              {/* <AiIcons.AiOutlineClose onClick={showSidebar} style={{ color: "#000" }} /> */}
-              {user.name ? console.log(user.name) : console.log("no hay  nada")}
-            </Link>
-            <p className='name'>John Doe</p>
+        <ul className='sidebar-items' onClick={showSidebar}>
+          <li className='navbar-display'>
+            {/* <Link to="#" className='menu-bars'>
+              <AiIcons.AiOutlineClose onClick={showSidebar} style={{ color: "#000" }} />
+            </Link> */}
+            <p className='name'>{user.name}</p>
           </li>
           {MenuItems.map((item, index) => {
             return (
@@ -49,6 +53,12 @@ export default function Navbar() {
               </li>
             )
           })}
+          <li className="nav-text" >
+            <Link to="/" onClick={logout} >
+              <i className="fas fa-arrow-right-from-bracket"></i>
+              <span>Salir</span>
+            </Link>
+          </li>
         </ul>
       </nav>
     </>
