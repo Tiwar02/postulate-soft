@@ -148,12 +148,21 @@ export default class SignupContacts extends Component {
           </FormGroup>
 
           <FormGroup row className="mb-3">
-            <Col sm="12">
+            <Col sm="6">
               <Label for="email">* Email Corporativo</Label>
               <Input
                 id="email"
                 name="email"
                 placeholder="correoejemplo@empresa.com"
+                type="email"
+              />
+            </Col>
+            <Col sm="6">
+              <Label for="password">* Contraseña</Label>
+              <Input
+                id="password"
+                name="password"
+                placeholder="Ingrese una contraseña segura"
                 type="email"
               />
             </Col>

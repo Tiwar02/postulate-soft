@@ -1,15 +1,16 @@
 import React from "react";
-import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button} from "reactstrap";
+import { Card, CardImg, CardBody, CardTitle, CardSubtitle, CardText, Button, Row, Col } from "reactstrap";
 import "./Cardc.css"
 
 //Import images
-import avatarMan from "../../assets/images/studentman.png";
-import avatarWoman from "../../assets/images/studentwoman.png";
+import male from "../../assets/images/user_male.png";
+import female from "../../assets/images/user_female.png";
+
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Cardc(props) {
-  const {id , img, name, job, company} = props;
-  
+  const { id, imgPerfil, name, job, company, imgCompany } = props;
+
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
@@ -19,19 +20,19 @@ export default function Cardc(props) {
       <Card className="cardc" onClick={() => navigate(`/contacts/${id}`)}>
         <CardImg className="cardc-img"
           alt="Card image cap"
-          src={img === 0 ? avatarMan : avatarWoman}
+          src={imgPerfil === 0 ? male : female}
         />
         <CardBody>
-          <CardTitle tag="h5">{name}</CardTitle>
-          <CardSubtitle className="mb-2 text-muted" tag="h6">
+          <CardTitle tag="h4">{name}</CardTitle>
+          <CardSubtitle className="mb-2" tag="h5">
             {job}
           </CardSubtitle>
-          <CardText>
-            {company}
-          </CardText>
-          <CardText>
-            {company}
-          </CardText>
+          <CardSubtitle className="">{company}</CardSubtitle>
+          <div className="container-company">
+            <Col>
+              <img className="logo-company" src={imgCompany} alt={company} />
+            </Col>
+          </div>
         </CardBody>
       </Card>
     </div>

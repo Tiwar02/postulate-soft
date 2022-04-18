@@ -1,7 +1,6 @@
 import React, { Component, useContext } from "react";
 import udemLogo from "../../assets/images/udem_logo2.png";
 import "./Home.css";
- 
 
 export default class Home extends Component {
 

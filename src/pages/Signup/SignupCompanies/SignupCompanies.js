@@ -37,7 +37,7 @@ export default function SignupCompanies() {
               type="number"
             />
           </Col>
-          <Col>
+          <Col sm="6">
             <Label for="company_name">* Empresa</Label>
             <Input
               id="company_name"
@@ -45,6 +45,10 @@ export default function SignupCompanies() {
               placeholder="Ingrese el nombre de empresa"
               type="text"
             />
+          </Col>
+          <Col sm="3">
+            <Label for="logo_file">Logo de la empresa (PNG)</Label>
+            <Input id="logo_file" name="logo_file" type="file" />
           </Col>
         </FormGroup>
 

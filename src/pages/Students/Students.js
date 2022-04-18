@@ -94,7 +94,6 @@ export default function StudentCatalog() {
     fetch('https://622243ef666291106a22301b.mockapi.io/api/v1/students')
       .then(response => response.json())
       .then(data => setStudents(data));
-      console.log()
   });
 
   return (

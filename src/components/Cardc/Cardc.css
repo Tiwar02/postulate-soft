@@ -1,4 +1,10 @@
 .cardc {
+  display: flex;
+  width: 220px;
+  max-width: 250px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   border-radius: 15px;
   margin: 10px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -10,5 +16,16 @@
 }
 
 .cardc-img {
-  padding: 5px;
+  max-width: 80px;
+  min-height: 80px;
+  object-fit: contain;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 0 0 0;
+}
+
+.logo-company {
+  width: 140px;
+  height: 100px;
+  object-fit: contain;
 }
