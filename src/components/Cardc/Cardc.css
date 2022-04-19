@@ -1,3 +1,8 @@
+/* .group {
+  display: flex;
+  align-items: ;
+}
+
 .cardc {
   display: flex;
   width: 220px;
@@ -28,4 +33,150 @@
   width: 140px;
   height: 100px;
   object-fit: contain;
+}
+ */
+
+/* .container-card {
+  padding: 40px 20px 20px 20px;
+  width: 99%;
+  margin: auto;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
+} */
+
+.card_item {
+  padding: 15px 25px;
+  box-sizing: content-box;
+  width: 21%;
+  text-align: center;
+}
+
+.card_inner {
+  background: rgba(253, 253, 253, 0.808);
+  border-radius: 10px;
+  padding: 35px 20px;
+  min-width: 225px;
+  min-height: 340px;
+  max-height: 440px;
+  width: 100%;
+  box-shadow: 5px 5px 10px 2px rgba(95, 95, 95, 0.24);
+}
+
+.card_inner:hover {
+  border: 1px solid rgb(201, 201, 201);
+  transition: transform .3s;
+}
+
+.img-profile {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+  align-items: center;
+  transition: transform .2s;
+}
+
+.userName {
+  color: #203150;
+  font-weight: 600;
+  font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.userUrl {
+  font-size: 14px;
+  font-weight: 100;
+  margin: 5px 0 10px;
+  word-wrap: break-word;
+  color: #444444;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.userUrl a {
+  text-decoration: none;
+}
+
+.gitDetail {
+  flex: 1;
+  font-size: 14px;
+  line-height: 24px;
+  color: #7b8ca0;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-box {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+}
+
+.detail-box span {
+  margin: 2px;
+  padding: 2px 10px;
+  /* border: 2px solid #c7e6fa; */
+  background-color: #dfe7ff;
+  border-radius: 50px;
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+}
+
+.seeMore {
+  margin: 10px auto;
+  width: 100px;
+  height: 35px;
+  background: hsl(245, 44%, 65%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 10px 10px hsl(225, 100%, 94%);
+}
+
+.img-company {
+  width: 140px;
+  height: 100px;
+  padding: 5px;
+  object-fit: contain;
+  align-items: center;
+  transition: transform .2s;
+}
+
+@media screen and (max-width: 1024px) {
+  .card_item {
+    width: 33%;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card_item {
+    width: 50%;
+  }
+
+  .wrapper .header {
+    font-size: 16px;
+    height: 50px;
+  }
+}
+
+@media screen and (max-width: 568px) {
+  .card_item {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .card_item {
+    width: 100%;
+  }
 }
