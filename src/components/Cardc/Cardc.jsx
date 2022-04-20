@@ -9,7 +9,7 @@ import female from "../../assets/images/user_female.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Cardc(props) {
-  const { id, imgPerfil, name, job, company, imgCompany } = props;
+  const { id, imgPerfil, name, profession, company, imgCompany } = props;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +25,7 @@ export default function Cardc(props) {
         <CardBody>
           <CardTitle tag="h4">{name}</CardTitle>
           <CardSubtitle className="mb-2" tag="h5">
-            {job}
+            {profession}
           </CardSubtitle>
           <CardSubtitle className="">{company}</CardSubtitle>
           <div className="container-company">

@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Container, CardGroup, Row, Col, Input } from 'reactstrap';
 import Cardc from "../../components/Cardc/Cardc";
+import Card from '../../components/Cardc/Card';
 import { ContactsData } from "./ContactsData";
 import { logos } from '../../assets/images/logos';
 
 export default function Contacts() {
   const [filter, setFilter] = useState('');
   const [filterCompany, setFilterCompany] = useState('');
-  const [filterJob, setFilterJob] = useState('');
+  const [filterProfession, setFilterProfession] = useState('');
 
   const getUnique = (array, comp) => {
     const unique = array
@@ -19,10 +20,10 @@ export default function Contacts() {
   }
 
   const uniqueCompanies = getUnique(ContactsData, "company");
-  const uniqueJobs = getUnique(ContactsData, "job");
+  const uniqueProfessions = getUnique(ContactsData, "profession");
   const searchText = (e) => setFilter(e.target.value);
   const handleChangeCompany = (e) => setFilterCompany(e.target.value);
-  const handleChangeJob = (e) => setFilterJob(e.target.value);
+  const handleChangeProfession = (e) => setFilterProfession(e.target.value);
 
   let dataSearch = ContactsData.filter(item => {
     return Object.keys(item).some(key =>
@@ -34,8 +35,8 @@ export default function Contacts() {
     return result.company == filterCompany;
   });
 
-  let filterByJob = ContactsData.filter((result) => {
-    return result.job == filterJob;
+  let filterByProfession = ContactsData.filter((result) => {
+    return result.profession == filterProfession;
   });
 
   return (
@@ -55,10 +56,10 @@ export default function Contacts() {
           </Input>
         </Col>
         <Col sm="3">
-          <Input id="filter_name" name="company_name" type="select" onChange={handleChangeJob}>
-            <option key={0}>Filtrar por cargo</option>
-            {uniqueJobs.map(contact =>
-              <option key={contact.id} value={contact.job}>{contact.job}</option>
+          <Input id="filter_name" name="company_name" type="select" onChange={handleChangeProfession}>
+            <option key={0}>Filtrar por profesion</option>
+            {uniqueProfessions.map(contact =>
+              <option key={contact.id} value={contact.profession}>{contact.profession}</option>
             )}
           </Input>
         </Col>
@@ -66,7 +67,7 @@ export default function Contacts() {
       <CardGroup className="group mt-4">
         {dataSearch.map((contact, index) => {
           return (
-            <Cardc id={index} imgPerfil={contact.imgPerfil} name={contact.name} job={contact.job} company={contact.company} imgCompany={contact.imgCompany} />
+            <Card id={index} imgPerfil={contact.imgPerfil} name={contact.name} email={contact.email} cel={contact.cel} area={contact.area} profession={contact.profession} company={contact.company} imgCompany={contact.imgCompany} />
           )
         })}
       </CardGroup>
