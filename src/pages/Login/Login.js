@@ -24,12 +24,12 @@ const Login = () => {
   //Backend
   const login= async(e)=>{
     const u={document,password}
-    const answer= await Axios.post('/contact/login', u);
+    const answer= await Axios.post('/account/login', u);
     console.log(answer)
     const message = answer.data.message;
 
     if(message!=='Bienvenido'){
-        setTextAlert(message);
+        setTextAlert("Datos invalidos");
         setHasError(true);
         
     }

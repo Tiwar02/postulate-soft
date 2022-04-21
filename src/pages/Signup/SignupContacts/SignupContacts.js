@@ -14,28 +14,77 @@ import {
   Row,
 } from "reactstrap";
 
-import axios, { Axios } from "axios";
+import axios, { Axios, AxiosError } from "axios";
 
 //Components
 import Tabs from "../../../components/Tabs/Tabs";
 
-const registerContact = async(e) => {
-    const[doctype,setDoctype]=useState('')
-    const[document,setDocument]=useState('')
-    const[name,setName]=useState('')
-    const[first_lastname,setFirst_lastname]=useState('')
-    const[second_lastname,setSecond_lastname]=useState('')
-    const[company,setCompany]=useState('')
-    const[area,setArea]=useState('')
-    const[rol,setRol]=useState('')
-    const[phone,setPhone]=useState('')
-    const[email,setEmail]=useState('')
-    const[password,setPassword]=useState('')
 
+
+
+export default class SignupContacts extends Component {
+
+  state = {
+    companies: [],
+    doctype: "",
+    document: "",
+    name: "",
+    gender: "",
+    first_lastname: "",
+    second_lastname: "",
+    company: "",
+    area: "",
+    employment: "",
+    phone: "",
+    email: "",
+    password: ""
+  }
+
+  componentDidMount() {
+    //Cargar Input tipo select con los nombres de las empresas registradas
+    axios
+      .get("https://localhost:8000/companies")
+      .then(response => {
+        this.setState({ companies: response.data })
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }
+
+  onSubmit = (e) => {
     e.preventDefault()
-    const contact={
+    this.registerContact()
+  }
+
+  onChange = (evt) => {
+    const value = evt.target.value;
+    this.setState({
+      ...this.state,
+      [evt.target.name]: value
+    });
+  }
+
+  registerContact = async (e) => {
+
+
+    // const[doctype,setDoctype]=useState('')
+    // const[document,setDocument]=useState('')
+    // const[name,setName]=useState('')
+    // const[first_lastname,setFirst_lastname]=useState('')
+    // const[second_lastname,setSecond_lastname]=useState('')
+    // const[company,setCompany]=useState('')
+    // const[area,setArea]=useState('')
+    // const[rol,setRol]=useState('')
+    // const[phone,setPhone]=useState('')
+    // const[email,setEmail]=useState('')
+    // const[password,setPassword]=useState('')
+
+  
+    const contact = {
       doctype,
       document,
+      gender,
       name,
       first_lastname,
       second_lastname,
@@ -48,58 +97,25 @@ const registerContact = async(e) => {
     }
 
     const token = sessionStorage.getItem('token')
-    const answer = await Axios.post('/contact/create',contact,{
-      headers:{'authorization':token}
-    }) 
-
-    const message = answer.data.message
-    console.log(message)
-    alert(message)
-
+    try{
+      const answer = await Axios.post('/contact/create', contact)
+      const message = answer.data.message
+      console.log(message)
+      alert(message)
+    }catch(error){
+      const err = AxiosError
+      if(err.response){
+        console.log(err.response.status);
+        console.log(err.response.data);
+      }
+    }
+    
     
 
+    
+    
 
-}
-function onChange(e) {
-  e.target.name === "document"
-    ? setDoctype(e.target.value)
-    : setDocument(e.target.value)
-    // ? setName(e.target.value)
-    // ? setFirst_lastname(e.target.value) 
-    // ? setSecond_lastname(e.target.value)
-    // ? setCompany(e.target.value)
-    // ? setArea(e.target.value)
-    // ? setRol(e.target.value)
-    // ? setPhone(e.target.value)
-    // ? setEmail(e.target.value)
-    // ? setPassword(e.target.value)
-}
-
-function onSubmit(e) {
-  e.preventDefault()
-  registerContact()
-}
-
-export default class SignupContacts extends Component {
-
-  state = {
-    companies: []
-  }
-
-  
-
-  componentDidMount() {
-    //Cargar Input tipo select con los nombres de las empresas registradas
-    axios
-      .get("https://localhost:8000/")
-      .then(response => {
-        this.setState({ companies: response.data.companies.name })
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }
+  };
 
   render() {
     return (
@@ -112,13 +128,14 @@ export default class SignupContacts extends Component {
 
           <FormGroup row className="mb-3">
             <Col sm="4">
-              <Label for="type_select">Tipo de documento</Label>
-              <Input id="type_select" name="type_select" type="select">
+              <Label for="doctype">Tipo de documento</Label>
+              <Input id="doctype" name="doctype" type="select" value={this.state.doctype} onChange={this.onChange}>
                 <option key={0}>Seleccione el tipo de documento</option>
                 <option key={1}>Tarjeta de identidad</option>
                 <option key={2}>Cédula de ciudadanía</option>
                 <option key={3}>Cédula de extranjería</option>
                 <option key={4}>Pasaporte</option>
+
               </Input>
             </Col>
             <Col sm="4">
@@ -128,18 +145,23 @@ export default class SignupContacts extends Component {
                 name="document"
                 placeholder="Ingrese su número de documento de identidad"
                 type="number"
-                onChange={onChange}
+                value={this.state.document}
+                onChange={this.onChange}
               />
             </Col>
             <Col sm="4">
               <Label for="gen">Genero</Label>
               <Input
-                id="gen"
-                name="gen"
+                id="gender"
+                name="gender"
                 placeholder="Ingrese su genero"
-                type="text"
-                onChange={onChange}
-              />
+                type="select"
+                value={this.state.gender}
+                onChange={this.onChange}
+              >
+                <option key={0} value={"M"}>Masculino</option>
+                <option key={1} value={"F"}>Femenino</option>
+              </Input>
             </Col>
           </FormGroup>
 
@@ -151,7 +173,8 @@ export default class SignupContacts extends Component {
                 name="name"
                 placeholder="Ingrese su nombre"
                 type="text"
-                onChange={onChange}
+                value={this.state.name}
+                onChange={this.onChange}
               />
             </Col>
             <Col sm="4">
@@ -161,7 +184,8 @@ export default class SignupContacts extends Component {
                 name="first_lastname"
                 placeholder="Ingrese su primer apellido"
                 type="text"
-                onChange={onChange}
+                value={this.state.first_lastname}
+                onChange={this.onChange}
               />
             </Col>
             <Col sm="4">
@@ -171,7 +195,8 @@ export default class SignupContacts extends Component {
                 name="second_lastname"
                 placeholder="Ingrese su segundo apellido"
                 type="text"
-                onChange={onChange}
+                value={this.state.second_lastname}
+                onChange={this.onChange}
               />
             </Col>
           </FormGroup>
@@ -183,12 +208,12 @@ export default class SignupContacts extends Component {
           <FormGroup row>
             <Col sm="6" >
               <Label for="company">* Empresa</Label>
-              <Input id="company" name="company" type="select" onChange={onChange}>
+              <Input id="company" name="company" type="select" onChange={this.onChange} value={this.state.company}>
                 <option key={0}>Seleccione la empresa a la que pertenece</option>
                 {this.state.companies.map(company =>
                   <option key={company.id} value={company.id}>{company.name}</option>
                 )}
-                
+
               </Input>
             </Col>
             <Col sm="6" >
@@ -198,7 +223,8 @@ export default class SignupContacts extends Component {
                 name="area"
                 placeholder="Área a la que pertenece en la empresa"
                 type="text"
-                onChange={onChange}
+                value={this.state.area}
+                onChange={this.onChange}
               />
               <FormText>
                 Ejemplo: Contaduría, mercadeo, talento humano
@@ -214,7 +240,8 @@ export default class SignupContacts extends Component {
                 name="rol"
                 placeholder="Ingrese el cargo que desempeña en la empresa"
                 type="text"
-                onChange={onChange}
+                value={this.state.rol}
+                onChange={this.onChange}
               />
             </Col>
             <Col sm="6">
@@ -224,7 +251,8 @@ export default class SignupContacts extends Component {
                 name="phone"
                 placeholder="Ingrese su número de teléfono"
                 type="text"
-                onChange={onChange}
+                value={this.state.phone}
+                onChange={this.onChange}
               />
             </Col>
           </FormGroup>
@@ -237,7 +265,8 @@ export default class SignupContacts extends Component {
                 name="email"
                 placeholder="correoejemplo@empresa.com"
                 type="email"
-                onChange={onChange}
+                value={this.state.email}
+                onChange={this.onChange}
               />
             </Col>
             <Col sm="6">
@@ -247,7 +276,8 @@ export default class SignupContacts extends Component {
                 name="password"
                 placeholder="Ingrese una contraseña segura"
                 type="email"
-                onChange={onChange}
+                value={this.state.password}
+                onChange={this.onChange}
               />
             </Col>
           </FormGroup>
@@ -257,7 +287,7 @@ export default class SignupContacts extends Component {
               <Button
                 style={{ background: "#C20C19" }}
                 block
-                onClick={() => alert("Se ha registrado correctamente")}
+                onClick={this.onSubmit}
               >
                 Registrar
               </Button>
