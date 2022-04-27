@@ -1,4 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
+import axios, { Axios, AxiosError } from "axios";
 import "./SignupContacts.css";
 
 //Reactstrap
@@ -14,13 +15,8 @@ import {
   Row,
 } from "reactstrap";
 
-import axios, { Axios, AxiosError } from "axios";
-
 //Components
 import Tabs from "../../../components/Tabs/Tabs";
-
-
-
 
 export default class SignupContacts extends Component {
 
@@ -34,7 +30,7 @@ export default class SignupContacts extends Component {
     second_lastname: "",
     company: "",
     area: "",
-    employment: "",
+    job: "",
     phone: "",
     email: "",
     password: ""
@@ -43,7 +39,7 @@ export default class SignupContacts extends Component {
   componentDidMount() {
     //Cargar Input tipo select con los nombres de las empresas registradas
     axios
-      .get("https://localhost:8000/companies")
+      .get("http://localhost:8000/companies")
       .then(response => {
         this.setState({ companies: response.data })
       })
@@ -53,8 +49,8 @@ export default class SignupContacts extends Component {
   }
 
   onSubmit = (e) => {
-    e.preventDefault()
-    this.registerContact()
+    e.preventDefault();
+    this.registerContact();
   }
 
   onChange = (evt) => {
@@ -65,22 +61,7 @@ export default class SignupContacts extends Component {
     });
   }
 
-  registerContact = async (e) => {
-
-
-    // const[doctype,setDoctype]=useState('')
-    // const[document,setDocument]=useState('')
-    // const[name,setName]=useState('')
-    // const[first_lastname,setFirst_lastname]=useState('')
-    // const[second_lastname,setSecond_lastname]=useState('')
-    // const[company,setCompany]=useState('')
-    // const[area,setArea]=useState('')
-    // const[rol,setRol]=useState('')
-    // const[phone,setPhone]=useState('')
-    // const[email,setEmail]=useState('')
-    // const[password,setPassword]=useState('')
-
-  
+  registerContact = async () => {
     const contact = {
       doctype,
       document,
@@ -90,32 +71,26 @@ export default class SignupContacts extends Component {
       second_lastname,
       company,
       area,
-      rol,
+      job,
       phone,
       email,
       password
     }
 
     const token = sessionStorage.getItem('token')
-    try{
-      const answer = await Axios.post('/contact/create', contact)
+    try {
+      const answer = await axios.post('http:localhost:8000/contacts/create', contact)
       const message = answer.data.message
       console.log(message)
       alert(message)
-    }catch(error){
+    } catch (error) {
       const err = AxiosError
-      if(err.response){
+      if (err.response) {
         console.log(err.response.status);
         console.log(err.response.data);
       }
     }
-    
-    
-
-    
-    
-
-  };
+  }
 
   render() {
     return (
@@ -150,7 +125,7 @@ export default class SignupContacts extends Component {
               />
             </Col>
             <Col sm="4">
-              <Label for="gen">Genero</Label>
+              <Label for="gen">Género</Label>
               <Input
                 id="gender"
                 name="gender"
@@ -159,8 +134,9 @@ export default class SignupContacts extends Component {
                 value={this.state.gender}
                 onChange={this.onChange}
               >
-                <option key={0} value={"M"}>Masculino</option>
-                <option key={1} value={"F"}>Femenino</option>
+                <option key={0} value={"default"}>Seleccione su género</option>
+                <option key={1} value={"M"}>Masculino</option>
+                <option key={2} value={"F"}>Femenino</option>
               </Input>
             </Col>
           </FormGroup>
@@ -211,7 +187,7 @@ export default class SignupContacts extends Component {
               <Input id="company" name="company" type="select" onChange={this.onChange} value={this.state.company}>
                 <option key={0}>Seleccione la empresa a la que pertenece</option>
                 {this.state.companies.map(company =>
-                  <option key={company.id} value={company.id}>{company.name}</option>
+                  <option key={company.id} value={company.id}>{company.company_name}</option>
                 )}
 
               </Input>

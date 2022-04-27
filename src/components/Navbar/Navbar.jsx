@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { MenuItems } from './MenuItems';
+import { MenuItemsAdmin } from './MenuItems';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import "./Navbar.css";
@@ -18,7 +18,7 @@ export default function Navbar() {
   const changeShowProgress = () => setShowProgress(!showProgress);
 
   const logout = () => {
-    setUser({ loggedIn: false, name: user.name })
+    setUser({...user, loggedIn: false })
   }
 
   return (
@@ -43,7 +43,7 @@ export default function Navbar() {
             </Link> */}
             <p className='name'>{user.name}</p>
           </li>
-          {MenuItems.map((item, index) => {
+          {MenuItemsAdmin.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
                 <Link to={item.path}>

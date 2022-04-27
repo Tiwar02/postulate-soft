@@ -19,7 +19,7 @@ export default function NotFoundPage() {
   return (
     <Container>
       <div className='content'>
-        <Lottie options={defaultOptions} width={450} height={450} />
+        <Lottie options={defaultOptions} width={400} height={400} />
         <h2 className='text'>Oops, la página solicitada no ha sido encontrada o no existe.</h2>
         <Button
           style={{ background: "#C20C19" }}

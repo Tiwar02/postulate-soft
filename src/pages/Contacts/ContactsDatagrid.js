@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import { Row, Col} from 'reactstrap';
+import { Link } from 'react-router-dom';
 import Axios from "axios";
 
 const columns = [
@@ -23,7 +25,7 @@ const columns = [
   {
     field: 'document',
     headerName: 'N° documento',
-    width: 150,
+    width: 130,
   },
   {
     field: 'name',
@@ -41,55 +43,36 @@ const columns = [
     width: 150,
   },
   {
-    field: 'program',
-    headerName: 'Programa',
+    field: 'company',
+    headerName: 'Empresa',
     width: 200
   },
   {
-    field: 'average',
-    headerName: 'Promedio',
-    type: 'number',
-    width: 100,
+    field: 'area',
+    headerName: 'Área',
+    width: 200,
   },
   {
-    field: 'age',
-    headerName: 'Edad',
-    type: 'number',
-    width: 100,
-  },
-  {
-    field: 'semester',
-    headerName: 'Semestre',
-    type: 'number',
-    width: 100
+    field: 'email',
+    headerName: 'Email',
+    width: 200
   },
   {
     field: 'phone',
     headerName: 'Celular',
-    width: 150
-  },
-  {
-    field: 'hv',
-    headerName: 'HV',
-    width: 180,
-  },
-  {
-    field: 'status',
-    headerName: 'Estado',
-    type: 'boolean',
-    width: 80
+    width: 150,
   }
 ];
 
-export default function Students() {
-  const [students, setStudents] = useState([]);
+export default function ContactsDatagrid() {
+  const [contacts, setContacts] = useState([]);
   const [pageSize, setPageSize] = useState(20);
 
   useEffect(() => {
     Axios
-      .get("http://localhost:8000/students")
+      .get("http://localhost:8000/contacts")
       .then(response => {
-        setStudents(response.data)
+        setContacts(response.data)
       })
       .catch((error) => {
         console.log(error);
@@ -98,14 +81,26 @@ export default function Students() {
 
   return (
     <div className='container mt-4' style={{ height: 620, width: '100%' }}>
-      <h2>Estudiantes</h2>
+      <Row>
+        <Col>
+          <h2>Contactos</h2>
+        </Col>
+        <Col sm="3">
+          <Link to="/contacts" className='urlLink' style={{ textDecoration: "none", color: "#fff", width: "100%" }}>
+            <div className='box' style={{ width: 200, height: 40, background: "#C20C19", color: "#fff", display: "flex", justifyContent: "center", alignItems: "center" }}>
+              Ver en Cards
+            </div>
+          </Link>
+        </Col>
+      </Row>
+
       <DataGrid
         components={{ Toolbar: GridToolbar }}
-        rows={students}
+        rows={contacts}
         columns={columns}
         pageSize={pageSize}
         onPageSizeChange={newPageSize => setPageSize(newPageSize)}
-        rowsPerPageOptions={[10, 20, 30]}
+        rowsPerPageOptions={[10,20,30]}
         checkboxSelection
       />
     </div>

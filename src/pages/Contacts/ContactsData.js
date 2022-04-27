@@ -3,7 +3,7 @@ import { logos } from '../../assets/images/logos';
 export const ContactsData = [
 
     {
-        id: 0,
+        id: 1,
         imgPerfil: 0,
         name: "Juan Felipe de la Torre",
         area: "Talento Humano",
@@ -14,7 +14,7 @@ export const ContactsData = [
         imgCompany: logos.grupoexito
     },
     {
-        id: 1,
+        id: 2,
         imgPerfil: 1,
         name: "Maria Fernanda Perez",
         area: "Area TI",
@@ -25,7 +25,7 @@ export const ContactsData = [
         imgCompany: logos.tuya
     },
     {
-        id: 2,
+        id: 3,
         imgPerfil: 0,
         name: "Daniel Alvarez",
         area: "Obras Civiles",
@@ -36,7 +36,7 @@ export const ContactsData = [
         imgCompany: logos.bancolombia
     },
     {
-        id: 3,
+        id: 4,
         imgPerfil: 1,
         name: "Melissa Ortiz",
         area: "Cazadora de talentos",
@@ -47,7 +47,7 @@ export const ContactsData = [
         imgCompany: logos.comfama
     },
     {
-        id: 4,
+        id: 5,
         imgPerfil: 1,
         name: "Fernanda Rios",
         area: "Analisis de mercado",
@@ -58,7 +58,7 @@ export const ContactsData = [
         imgCompany: logos.globant
     },
     {
-        id: 5,
+        id: 6,
         imgPerfil: 0,
         name: "Guillermo Saldarriaga",
         area: "Innovacion",
@@ -69,18 +69,18 @@ export const ContactsData = [
         imgCompany: logos.comfama
     },
     {
-        id: 6,
+        id: 7,
         imgPerfil: 1,
         name: "Alexandra Ruiz Lopera",
         area: "Recursos Humanos",
         profession: "Psicologia",
         company: "Bancolombia",
-        email: "alexarl@bancolombia",
+        email: "alexarl@bancolombia.com",
         cel: "123 456 78 90",
         imgCompany: logos.bancolombia
     },
     {
-        id: 7,
+        id: 8,
         imgPerfil: 0,
         name: "Michael Bedoya Gomez",
         area: "Infraestructura",
@@ -91,7 +91,7 @@ export const ContactsData = [
         imgCompany: logos.devimar
     },
     {
-        id: 8,
+        id: 9,
         imgPerfil: 1,
         name: "Valentina Ospina Gomez",
         area: "I+D",
@@ -101,7 +101,7 @@ export const ContactsData = [
         imgCompany: logos.ceiba
     },
     {
-        id: 9,
+        id: 10,
         imgPerfil: 1,
         name: "Luisa Perez",
         area: "Cazadora de talentos",

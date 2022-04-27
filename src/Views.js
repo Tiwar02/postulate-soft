@@ -5,7 +5,7 @@ import SignupContacts from "./pages/Signup/SignupContacts/SignupContacts";
 import Students from "./pages/Students/Students";
 import Companies from "./pages/Companies/Companies";
 import Contacts from "./pages/Contacts/Contacts";
-import Contact from "./pages/Contacts/Contact";
+import ContactsDt from "./pages/Contacts/ContactsDatagrid";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
@@ -33,7 +33,7 @@ export default function Views() {
           <Route path="/students" element={<Students />} />
           <Route path="/companies" element={<Companies />} />
           <Route path="/contacts" element={<Contacts />} />
-          <Route path="/contacts/*" element={<Contact />} />
+          <Route path="/contacts-dt" element={<ContactsDt />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Route>

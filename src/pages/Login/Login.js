@@ -8,8 +8,6 @@ import Axios from 'axios'
 //Reactstrap
 import { Button, Form, FormGroup, Label, Input, Alert } from "reactstrap";
 
-
-
 const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,10 +20,10 @@ const Login = () => {
   const [hasError, setHasError] = useState(false);
 
   //Backend
-  const login= async(e)=>{
+  const login= async () => {
     const u={document,password}
-    const answer= await Axios.post('/account/login', u);
-    console.log(answer)
+    const answer= await Axios.post('/accounts/login', u);
+    // console.log(answer)
     const message = answer.data.message;
 
     if(message!=='Bienvenido'){
@@ -34,20 +32,19 @@ const Login = () => {
         
     }
     else{
-      const token = answer.data.token
+      const document = answer.data.document
       const name = answer.data.name
-      const idUser = answer.data.id
+      const token = answer.data.token
 
-      sessionStorage.setItem('token',token)
+      sessionStorage.setItem('document',document)
       sessionStorage.setItem('name',name)
-      sessionStorage.setItem('idUser',idUser)
-      setUser({loggedIn:true,name:user.name})
+      sessionStorage.setItem('token',token)
+      setUser({...user, ["loggedIn"]: true})
       alert("Logueo Exitoso")
+      console.log(user)
       navigate('/')
     }
   }
-
-
 
   function onChange(e) {
     e.target.name === "document"
@@ -61,9 +58,7 @@ const Login = () => {
       setTextAlert("Llene todos los campos");
       setHasError(true);
     } else {
-      
         login()
-    
     }
   }
 
