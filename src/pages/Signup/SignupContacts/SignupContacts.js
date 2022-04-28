@@ -62,33 +62,29 @@ export default class SignupContacts extends Component {
   }
 
   registerContact = async () => {
+
     const contact = {
-      doctype,
-      document,
-      gender,
-      name,
-      first_lastname,
-      second_lastname,
-      company,
-      area,
-      job,
-      phone,
-      email,
-      password
+      doctype: this.state.doctype,
+      document: this.state.document,
+      gender: this.state.gender,
+      name: this.state.name,
+      first_lastname: this.state.first_lastname,
+      second_lastname: this.state.second_lastname,
+      company: this.state.company,/* this.state.companies.find(item => item.id === this.state.company).company_name */
+      area: this.state.area,
+      job: this.state.job,
+      phone: this.state.phone,
+      email: this.state.email,
+      password: this.state.password
     }
 
     const token = sessionStorage.getItem('token')
     try {
-      const answer = await axios.post('http:localhost:8000/contacts/create', contact)
+      const answer = await axios.post('contacts/create', contact)
       const message = answer.data.message
-      console.log(message)
-      alert(message)
+      alert("El contacto se creó correctamente")
     } catch (error) {
-      const err = AxiosError
-      if (err.response) {
-        console.log(err.response.status);
-        console.log(err.response.data);
-      }
+      console.log(error);
     }
   }
 
@@ -96,7 +92,7 @@ export default class SignupContacts extends Component {
     return (
       <Container fluid="md">
         <Tabs tabSelect={1} />
-        <Form className="mt-4">
+        <Form className="mt-4" autoComplete="off">
           <div className="mb-3">
             <h3 className="h3-container ">Información personal</h3>
           </div>
@@ -105,12 +101,11 @@ export default class SignupContacts extends Component {
             <Col sm="4">
               <Label for="doctype">Tipo de documento</Label>
               <Input id="doctype" name="doctype" type="select" value={this.state.doctype} onChange={this.onChange}>
-                <option key={0}>Seleccione el tipo de documento</option>
-                <option key={1}>Tarjeta de identidad</option>
-                <option key={2}>Cédula de ciudadanía</option>
-                <option key={3}>Cédula de extranjería</option>
-                <option key={4}>Pasaporte</option>
-
+                <option key={0} value={0}>Seleccione el tipo de documento</option>
+                <option key={1} value={1}>Tarjeta de identidad</option>
+                <option key={2} value={2}>Cédula de ciudadanía</option>
+                <option key={3} value={3}>Cédula de extranjería</option>
+                <option key={4} value={4}>Pasaporte</option>
               </Input>
             </Col>
             <Col sm="4">
@@ -212,11 +207,11 @@ export default class SignupContacts extends Component {
             <Col sm="6">
               <Label for="area">* Cargo</Label>
               <Input
-                id="rol"
-                name="rol"
+                id="job"
+                name="job"
                 placeholder="Ingrese el cargo que desempeña en la empresa"
                 type="text"
-                value={this.state.rol}
+                value={this.state.job}
                 onChange={this.onChange}
               />
             </Col>
@@ -226,7 +221,7 @@ export default class SignupContacts extends Component {
                 id="phone"
                 name="phone"
                 placeholder="Ingrese su número de teléfono"
-                type="text"
+                type="number"
                 value={this.state.phone}
                 onChange={this.onChange}
               />
@@ -251,7 +246,7 @@ export default class SignupContacts extends Component {
                 id="password"
                 name="password"
                 placeholder="Ingrese una contraseña segura"
-                type="email"
+                type="password"
                 value={this.state.password}
                 onChange={this.onChange}
               />
