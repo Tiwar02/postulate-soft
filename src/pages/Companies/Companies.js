@@ -25,7 +25,19 @@ const columns = [
   {
     field: 'employers_number',
     headerName: 'N° de empleados',
-    width: 100
+    width: 100,
+    valueGetter: params => {
+      switch (params.row.employers_number) {
+        case 0:
+          return "1 a 10"
+        case 1:
+          return "11 a 50"
+        case 2:
+          return "51 a 250"
+        case 3:
+          return "Más de 250"
+      }
+    }
   },
   {
     field: 'webpage',
@@ -57,7 +69,7 @@ const columns = [
   {
     field: 'city',
     headerName: 'Ciudad',
-    width: 150
+    width: 150,
   }
 ];
 
@@ -80,6 +92,7 @@ export default function Companies() {
     <div className='container mt-4' style={{ height: 620, width: '100%' }}>
       <h2>Empresas</h2>
       <DataGrid
+        getRowId={(companies) => companies._id}
         components={{ Toolbar: GridToolbar }}
         rows={companies}
         columns={columns}

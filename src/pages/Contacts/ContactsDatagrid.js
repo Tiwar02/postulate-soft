@@ -95,6 +95,7 @@ export default function ContactsDatagrid() {
       </Row>
 
       <DataGrid
+        getRowId={(contacts) => contacts._id}
         components={{ Toolbar: GridToolbar }}
         rows={contacts}
         columns={columns}
