@@ -36,12 +36,14 @@ const Login = () => {
       const name = answer.data.name
       const token = answer.data.token
 
+      // console.log(document,name,token);
+
       sessionStorage.setItem('document',document)
       sessionStorage.setItem('name',name)
       sessionStorage.setItem('token',token)
-      setUser({...user, ["loggedIn"]: true})
+      setUser({...user, ["name"]: name, ["loggedIn"]: true})
       alert("Logueo Exitoso")
-      console.log(user)
+      // console.log(user)
       navigate('/')
     }
   }

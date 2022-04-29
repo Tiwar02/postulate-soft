@@ -184,7 +184,6 @@ export default class SignupContacts extends Component {
                 {this.state.companies.map(company =>
                   <option key={company.id} value={company.id}>{company.company_name}</option>
                 )}
-
               </Input>
             </Col>
             <Col sm="6" >

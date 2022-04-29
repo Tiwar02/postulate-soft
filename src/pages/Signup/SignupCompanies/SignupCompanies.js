@@ -60,6 +60,12 @@ export default class SignupCompanies extends Component {
       ...this.state,
       [evt.target.name]: value
     });
+    // this.resetForm()
+  }
+
+  resetForm = () => {
+    // document.getElementById("form-company").reset();
+
   }
 
   registerCompany = async () => {
@@ -95,7 +101,7 @@ export default class SignupCompanies extends Component {
       <Container fluid="md">
         <Tabs tabSelect={0} />
         <Form className="mt-4">
-          <FormGroup row className="mb-3">
+          <FormGroup id='form-company' row className="mb-3">
             <Col sm="3">
               <Label for="nit">* Nit</Label>
               <Input
@@ -143,9 +149,9 @@ export default class SignupCompanies extends Component {
               <Label for="sector">Sector</Label>
               <Input id="sector" name="sector" type="select" value={this.state.sector} onChange={this.onChange}>
                 <option key={0} value={0}>Seleccione un sector</option>
-                <option key={1} value={1}>Sector 1</option>
-                <option key={2} value={2}>Sector 2</option>
-                <option key={3} value={3}>Sector 3</option>
+                <option key={1} value="Sector 1">Sector 1</option>
+                <option key={2} value="Sector 2">Sector 2</option>
+                <option key={3} value="Sector 3">Sector 3</option>
                 
               </Input>
             </Col>
@@ -180,11 +186,11 @@ export default class SignupCompanies extends Component {
               <Label for="country_select">* País</Label>
               <Input id="country" name="country" type="select" value={this.state.country} onChange={this.onChange}>
                 <option key={0} value={0}>Seleccione un país</option>
-                <option key={1} value={1}>Argentina</option>
-                <option key={2} value={2}>Brazil</option>
-                <option key={3} value={3}>Colombia</option>
-                <option key={4} value={4}>Estados Unidos</option>
-                <option key={5} value={5}>México</option>
+                <option key={1} value="Argentina">Argentina</option>
+                <option key={2} value="Brazil">Brazil</option>
+                <option key={3} value="Colombia">Colombia</option>
+                <option key={4} value="Estados">Estados Unidos</option>
+                <option key={5} value="México">México</option>
               </Input>
             </Col>
             <Col sm="4">
@@ -197,18 +203,18 @@ export default class SignupCompanies extends Component {
                 onChange={this.onChange}
               >
                 <option key={0} value={0}>Seleccione un departamento</option>
-                <option key={1} value={1}>Antioqua</option>
-                <option key={2} value={2}>Cundinamarca</option>
-                <option key={3} value={3}>Valle del Cauca</option>
+                <option key={1} value="Antioquia">Antioquia</option>
+                <option key={2} value="Cundinamarca">Cundinamarca</option>
+                <option key={3} value="Valle del Cauca">Valle del Cauca</option>
               </Input>
             </Col>
             <Col sm="4">
               <Label for="city_select">* Ciudad</Label>
               <Input id="city" name="city" type="select" value={this.state.city} onChange={this.onChange}>
                 <option key={0} value={0}>Seleccione una ciudad</option>
-                <option key={1} value={1}>Bogotá</option>
-                <option key={2} value={2}>Cali</option>
-                <option key={3} value={3}>Medellín</option>
+                <option key={1} value="Bogotá">Bogotá</option>
+                <option key={2} value="Cali">Cali</option>
+                <option key={3} value="Medellín">Medellín</option>
               </Input>
             </Col>
           </FormGroup>

@@ -45,7 +45,7 @@ const columns = [
   {
     field: 'company',
     headerName: 'Empresa',
-    width: 200
+    width: 200,
   },
   {
     field: 'area',
@@ -66,6 +66,7 @@ const columns = [
 
 export default function ContactsDatagrid() {
   const [contacts, setContacts] = useState([]);
+  const [companies, setCompanies] = useState([]);
   const [pageSize, setPageSize] = useState(20);
 
   useEffect(() => {
@@ -73,6 +74,17 @@ export default function ContactsDatagrid() {
       .get("http://localhost:8000/contacts")
       .then(response => {
         setContacts(response.data)
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, []);
+
+  useEffect(() => {
+    Axios
+      .get("http://localhost:8000/companies")
+      .then(response => {
+        setCompanies(response.data)
       })
       .catch((error) => {
         console.log(error);

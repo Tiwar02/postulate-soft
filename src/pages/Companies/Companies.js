@@ -7,7 +7,7 @@ const columns = [
   {
     field: 'nit',
     headerName: 'Nit',
-    width: 100
+    width: 120
   },
   {
     field: 'company_name',
@@ -48,12 +48,6 @@ const columns = [
   {
     field: 'sector',
     headerName: 'Sector',
-    width: 120,
-  },
-  ,
-  {
-    field: 'category',
-    headerName: 'Categoria',
     width: 120,
   },
   {
