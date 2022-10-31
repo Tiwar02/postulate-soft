@@ -17,13 +17,13 @@ const MenuItemsAdmin = [
         path: "/companies",
         icon: "fas fa-building",
         cName: "nav-text", 
-    },
-    {
-        title: "Contactos",
-        path: "/contacts",
-        icon: "fas fa-address-card",
-        cName: "nav-text", 
     }
+    // {
+    //     title: "Contactos",
+    //     path: "/contacts",
+    //     icon: "fas fa-address-card",
+    //     cName: "nav-text", 
+    // }
 ]
 
 const MenuItemsStudent = [
@@ -45,13 +45,13 @@ const MenuItemsStudent = [
         path: "/companies",
         icon: "fas fa-building",
         cName: "nav-text", 
-    },
-    {
-        title: "Contactos",
-        path: "/contacts",
-        icon: "fas fa-address-card",
-        cName: "nav-text", 
     }
+    // {
+    //     title: "Contactos",
+    //     path: "/contacts",
+    //     icon: "fas fa-address-card",
+    //     cName: "nav-text", 
+    // }
 ]
 
 const MenuItemsCompany = [
@@ -73,13 +73,13 @@ const MenuItemsCompany = [
         path: "/companies",
         icon: "fas fa-building",
         cName: "nav-text", 
-    },
-    {
-        title: "Contactos",
-        path: "/contacts",
-        icon: "fas fa-address-card",
-        cName: "nav-text", 
     }
+    // {
+    //     title: "Contactos",
+    //     path: "/contacts",
+    //     icon: "fas fa-address-card",
+    //     cName: "nav-text", 
+    // }
 ]
 
 export {MenuItemsAdmin, MenuItemsStudent, MenuItemsCompany};
